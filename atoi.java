@@ -1,7 +1,7 @@
 
 public class atoi {
 	
-	
+	/*
 	public int atoi(String str){
 		if (str.length() <= 0)
 			return 0;
@@ -36,14 +36,31 @@ public class atoi {
 		}
 		return isNegative? result * -1: result;
 	}
+	*/
 	
-	
-	private boolean isSpace(char ch){
-		if(ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n')
-			return true;
-		else
-			return false;
+	public int atoi(String str){
+		int index = 0;
+		String strclone = str + "@"; // set up the end char for the string
+		char curChar = strclone.charAt(index++);
+		int result = 0;
+		boolean isNegative = false;
+		while (curChar == ' ') curChar = strclone.charAt(index++);
+		
+		if (curChar == '-' || curChar == '+') {// take care of sign
+			isNegative = curChar == '-';
+			curChar = strclone.charAt(index++);
+		}
+		
+		while (Character.isDigit(curChar)){
+			int prevResult = result;
+			result = result * 10 + curChar - '0';
+			if ((result/10 - prevResult) != 0) // overflow
+				return isNegative? Integer.MIN_VALUE : Integer.MAX_VALUE;
+			curChar = strclone.charAt(index++);
+		}
+		return isNegative? result * -1: result;
 	}
+
 	
 	 
 
@@ -51,7 +68,7 @@ public class atoi {
 		// TODO Auto-generated method stub
 		
 		atoi a = new atoi();
-		System.out.println(a.atoi("10522545459"));
+		System.out.println(a.atoi("+1"));
 		//System.out.println(1052254545);
 		//System.out.println(1052254545 * 10);
 		//System.out.println(Integer.MAX_VALUE);
