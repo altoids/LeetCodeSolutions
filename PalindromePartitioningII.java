@@ -5,6 +5,7 @@ public class PalindromePartitioningII {
 	
 	public int minCut(String s) {
 		// looks like we need to find a much faster solution
+		
 		return 0;
 	}
 	/* this following solution fails the longest test string. looks like recursion is not going to work 

@@ -68,7 +68,7 @@ public class PalindromePartitioning {
 	public static void main(String[] args) {
 		
 		Palindrome p = new Palindrome();
-		String s = "abb";
+		String s = "c5nMro2nMfxtOveG9T?w?T_0C4KURCN?0PD82kE9hiECr0FHu:nd9i^3G9]:O4aXX`\\UWPTw?B25h:lX";
 		List<List<String>> lls = p.partition(s);
 		for (List<String> ls : lls)
 		{
