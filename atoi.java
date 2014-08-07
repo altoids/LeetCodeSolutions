@@ -27,11 +27,9 @@ public class atoi {
 		while (Character.isDigit(curChar)){
 			int prevResult = result;
 			result = result * 10 + curChar - '0';
-			if ((result/10 - prevResult) != 0)
-				if (isNegative)
-					return Integer.MIN_VALUE;
-				else
-					return Integer.MAX_VALUE;
+			if ((result/10 - prevResult) != 0) // overflow
+				return isNegative? Integer.MIN_VALUE : Integer.MAX_VALUE;
+			
 			index ++;
 			if (index >= str.length()) return isNegative? result * -1 : result;
 			curChar = str.charAt(index);
