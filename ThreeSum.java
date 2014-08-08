@@ -33,7 +33,7 @@ public class ThreeSum {
 		// TODO Auto-generated method stub
 		
 		ThreeSum ts = new ThreeSum();
-		int[] num = {1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 3,1, -4, 2, 31, -4, 2, 3,1, -4, 2, 3};
+		int[] num = {0,0,0,0};
 		LinkedList<LinkedList<Integer>> llll = ts.threeSum(num);
 		for (LinkedList<Integer> ll : llll){
 			for (Integer i : ll){
