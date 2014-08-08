@@ -13,7 +13,6 @@ public class maxPoints {
 	}
 	
 	Point p0;
-	
 	public int maxPoints(Point[] points) {
 		int maxpoints = 0;
 		if (points.length <= 2)
@@ -28,7 +27,6 @@ public class maxPoints {
 					else if ((slopeTo(p0, p1) - slopeTo(p0, p2)) < 0.0)
 						return -1;
 					else return 0;
-		
 				}
 			});
 			
@@ -54,8 +52,6 @@ public class maxPoints {
 		return maxpoints;
     }
 	
-	
-
 	public double slopeTo(Point origin, Point that) {
         // degenerate line segment (between a point and itself)
         if (origin.x == that.x && origin.y == that.y) 
