@@ -60,10 +60,8 @@ public class maxPoints {
             return +0.0;
         else if (origin.x == that.x) // vertical line
             return Double.POSITIVE_INFINITY;
-        
         // only the normal cases here
         return (double) (that.y - origin.y) / (that.x - origin.x);
-
     }
 	
 	public static void main(String[] args) {

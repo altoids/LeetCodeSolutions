@@ -11,7 +11,6 @@ public class maxProfit {
             lowestprice = prices[i] < lowestprice? prices[i]: lowestprice;
             maxp = maxp < prices[i] - lowestprice? prices[i] - lowestprice: maxp;
         }
-        
         return maxp;
     }
 
