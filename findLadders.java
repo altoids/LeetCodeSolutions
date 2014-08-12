@@ -225,9 +225,10 @@ public class findLadders {
 		wmap.put(end, _end);
 		dict.add(end);
 		
-		
+		// connect the entire word map
 		Word _start = new Word(start);
 		connect(_start, dict);
+		
 		
 		final Trace SEP = new Trace(null, null);
 		LinkedList<Trace> queue = new LinkedList<Trace>();
