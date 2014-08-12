@@ -164,6 +164,7 @@ public class findLadders {
 	}
 	*/
 	
+	// word object that contains it's next one letter diff word set
 	static class Word {
 		String word;
 		Set<Word> next;
@@ -172,6 +173,8 @@ public class findLadders {
 			this.word = word;
 		}
 	}
+	
+	// object that can trace back to top from end.
 	static class Trace {
 		Word obj;
 		Trace prev;
@@ -180,7 +183,12 @@ public class findLadders {
 			this.prev = prev;
 		}
 	}
+	
+	// reconstructed words dict with one letter diff word set as value
+	
 	HashMap<String, Word> wmap;
+	
+	//connect all words as a map
 	void connect(Word w, Set<String> dict){
 		if(w.next != null) return;
 		Set<Word> n = new HashSet<Word>();
@@ -200,19 +208,24 @@ public class findLadders {
 		}
 		w.next = n;
 	}
+	
 	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
 		List<List<String>> rt = new ArrayList<List<String>>();
 		wmap = new HashMap<String, Word>();
 	
+		// build initial word map, with links set are empty
 		for(String d : dict){
 			Word w = new Word(d);
 			wmap.put(d, w);
 		}
 		
+		// add end node to the word map, and make sure dict contains end
 		Word _end = new Word(end);
 		_end.end = true;
 		wmap.put(end, _end);
 		dict.add(end);
+		
+		
 		Word _start = new Word(start);
 		connect(_start, dict);
 		
