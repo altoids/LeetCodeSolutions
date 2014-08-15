@@ -23,7 +23,6 @@ public class Triangle {
 	
 	HashMap<String, Integer> hs = new HashMap<String, Integer>();
 	private int minmumTotalInternal(List<List<Integer>> triangle, int rootLayer, int rootIndex){
-		//System.out.println("Layer = " + rootLayer + ", RootIndex = " + rootIndex);
 		if (triangle == null || triangle.size() <= rootLayer)
 			return 0;
 		String key = rootLayer + "," + rootIndex;
