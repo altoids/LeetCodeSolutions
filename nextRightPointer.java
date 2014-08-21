@@ -36,7 +36,7 @@ public class nextRightPointer {
 		      TreeLinkNode left, right, next;
 		      TreeLinkNode(int x) { val = x; }
 		  }
-	public void connect(TreeLinkNode root) {
+	/*public void connect(TreeLinkNode root) {
         if (root == null)
             return;
         LinkedList<TreeLinkNode> q = new LinkedList<TreeLinkNode>();
@@ -63,7 +63,80 @@ public class nextRightPointer {
                 qLevel.add(prevLevel + 1);
             }
         }
-    }
+    }*/
+	 
+	 // really constant space solution
+	 public void connect(TreeLinkNode root){
+		 TreeLinkNode prev = root;
+		 TreeLinkNode cur = null;
+		 while(prev != null && prev.left != null){
+			 cur = prev;
+			 while(cur != null){
+				 cur.left.next = cur.right;
+				 if (cur.next != null)
+					 cur.right.next = cur.next.left;
+				 cur = cur.next;
+			 }
+			 prev = prev.left;
+		 }
+	 }
+	 
+	 public void connect2(TreeLinkNode root) {
+	      TreeLinkNode prev = root;
+			 TreeLinkNode cur = null;
+			 while(prev != null){
+				 cur = prev;
+				 while(cur != null){
+				     if (cur.left == null && cur.right == null){
+				         cur = cur.next;
+				         continue;
+				     }
+				     TreeLinkNode nextChild;
+				     if (cur.right == null){
+				    	 nextChild = findNextChild(cur, false);
+				    	 cur.left.next = nextChild;
+				     }else if (cur.left == null){
+				         nextChild = findNextChild(cur.next, true);
+				         cur.right.next = nextChild;
+				     }else {
+				         cur.left.next = cur.right;
+				         nextChild = findNextChild(cur.next,true);
+				         cur.right.next = nextChild;
+				     }
+					 cur = cur.next;
+				 }
+				 
+				 // find the first non-null child from this level
+				 while (prev != null && prev.left == null && prev.right == null )
+				    prev = prev.next;
+				 if (prev == null)
+				    break;
+				 if (prev.left != null){
+				    prev = prev.left;
+				    continue;
+				 }
+				 if (prev.right != null){
+				     prev = prev.right;
+				     continue;
+				 }
+			 } 
+	    }
+	 // return next non-null child at the same level
+	 private TreeLinkNode findNextChild(TreeLinkNode curParentNode, boolean startFromLeft){
+		 TreeLinkNode child = null;
+		 TreeLinkNode parent = curParentNode;
+		 
+		 while (child == null && parent != null){
+			 if (startFromLeft)
+				 child = parent.left;
+			 else
+				 child = parent.right;
+			 startFromLeft = !startFromLeft;
+			 if (startFromLeft)
+				 parent = parent.next;
+		 }
+		 return child;
+	 }
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
