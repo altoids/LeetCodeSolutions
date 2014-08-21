@@ -91,34 +91,17 @@ public class nextRightPointer {
 				         cur = cur.next;
 				         continue;
 				     }
-				     TreeLinkNode nextChild;
-				     if (cur.right == null){
-				    	 nextChild = findNextChild(cur, false);
-				    	 cur.left.next = nextChild;
-				     }else if (cur.left == null){
-				         nextChild = findNextChild(cur.next, true);
-				         cur.right.next = nextChild;
-				     }else {
+				     if (cur.right == null)
+				    	 cur.left.next = findNextChild(cur, false);
+				     else if (cur.left == null)
+				         cur.right.next = findNextChild(cur.next, true);
+				     else {
 				         cur.left.next = cur.right;
-				         nextChild = findNextChild(cur.next,true);
-				         cur.right.next = nextChild;
+				         cur.right.next = findNextChild(cur.next,true);
 				     }
 					 cur = cur.next;
 				 }
-				 
-				 // find the first non-null child from this level
-				 while (prev != null && prev.left == null && prev.right == null )
-				    prev = prev.next;
-				 if (prev == null)
-				    break;
-				 if (prev.left != null){
-				    prev = prev.left;
-				    continue;
-				 }
-				 if (prev.right != null){
-				     prev = prev.right;
-				     continue;
-				 }
+				 prev = findNextChild(prev, true);
 			 } 
 	    }
 	 // return next non-null child at the same level
