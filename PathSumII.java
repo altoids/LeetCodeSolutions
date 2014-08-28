@@ -31,34 +31,42 @@ public class PathSumII {
 		      TreeNode(int x) { val = x; }
 		  }
 	public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        
+		List<List<Integer>> result = new LinkedList<List<Integer>>();
+		LinkedList<LinkedList<Integer>> allPathList = hasPathSumList(root, sum);
+		
+        for (List<Integer> li : allPathList ){
+        	int tempSum = 0;
+        	for (Integer i : li){
+        		tempSum += i;
+        	}
+        	if (tempSum == sum)
+        		result.add(li);
+        }
+        return result;
     }
 	
-	private List<List<Integer>> hasPathSumList(TreeNode root, int sum){
+	private LinkedList<LinkedList<Integer>> hasPathSumList(TreeNode root, int sum){
 		
 		if (root == null)
-			return new LinkedList<List<Integer>>();
-		List<List<Integer>> left = hasPathSumList(root.left, sum);
-		List<List<Integer>> right = hasPathSumList(root.right, sum);
-		List<List<Integer>> result = new LinkedList<List<Integer>>();
+			return new LinkedList<LinkedList<Integer>>();
+		LinkedList<LinkedList<Integer>> left = hasPathSumList(root.left, sum);
+		LinkedList<LinkedList<Integer>> right = hasPathSumList(root.right, sum);
+		LinkedList<LinkedList<Integer>> result = new LinkedList<LinkedList<Integer>>();
 		
-		for (List<Integer> i : left){
-				i.add(root.val);
+		for (LinkedList<Integer> i : left){
+				i.addFirst(root.val);
 		}
 		result.addAll(left);
-		for (List<Integer> i : right){
-				i.add(root.val);
+		for (LinkedList<Integer> i : right){
+				i.addFirst(root.val);
 		}
 		result.addAll(right);
 		if (root.left == null && root.right == null){
-			List<Integer> rootNode = new LinkedList<Integer>();
+			LinkedList<Integer> rootNode = new LinkedList<Integer>();
 			rootNode.add(root.val);
-			result.add(rootNode);
+			result.addFirst(rootNode);
 		}
-		    
 		return result;
-		
-			
 	}
 
 	public static void main(String[] args) {
