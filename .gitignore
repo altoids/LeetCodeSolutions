@@ -1,4 +1,3 @@
 *.class
 *.checkstyle
-*.project
 /bin
