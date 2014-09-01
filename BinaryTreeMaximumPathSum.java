@@ -22,10 +22,23 @@ public class BinaryTreeMaximumPathSum {
 		      TreeNode(int x) { val = x; }
 		  }
 	public int maxPathSum(TreeNode root) {
+        int result = Integer.MIN_VALUE;
+        
+        if (root == null)
+        	return Integer.MIN_VALUE;
+        int left = maxPathSum(root.left);
+        int right = maxPathSum(root.right);
+        
+        int sumOf3Parts = root.val + left + right;
+        int sumOfLeftPath = root.val + left;
+        int sumOfRightPath = root.val + right;
+        
+        return Math.max(Math.max(root.val, sumOf3Parts), Math.max(sumOfLeftPath, sumOfRightPath));
         
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 
 	}
 
