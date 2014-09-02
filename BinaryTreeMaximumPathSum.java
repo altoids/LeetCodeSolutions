@@ -21,7 +21,7 @@ public class BinaryTreeMaximumPathSum {
 		      TreeNode right;
 		      TreeNode(int x) { val = x; }
 		  }
-	
+	// main code start
 	int max = Integer.MIN_VALUE;
 	public int maxPathSum(TreeNode root) {
 	      
@@ -51,18 +51,49 @@ public class BinaryTreeMaximumPathSum {
         	result = maxOfBranches;
         return result;
 	}
+	//end of main code
+	//below are test code
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BinaryTreeMaximumPathSum m = new BinaryTreeMaximumPathSum();
 		//build a binary tree from an array
-		TreeNode root = m.new TreeNode(-1);
-		root.right = m.new TreeNode(2);
-		root.left = m.new TreeNode(-2);
+		TreeNode root = m.buildTreeFromArray(m);
 		
 		System.out.println(m.maxPathSum(root));
-		
-
 	}
+	
+	private TreeNode buildTreeFromArray(BinaryTreeMaximumPathSum m){
+		/*Scanner sIn = new Scanner(System.in);
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		while(sIn.hasNext()){
+			al.add(sIn.nextInt());
+		}
+		int[] num = new int[al.size()];
+		for (int i = 0; i< al.size(); i++){
+			num[i] = al.get(i);
+		}*/
+		//Arrays.sort(num);
+		/*for (int i = 0; i < num.length; i++)
+			System.out.print(num[i] + " ");
+		System.out.println("");*/
+		Random rm = new Random();
+		int[] num = new int[Math.abs(rm.nextInt(999999))];
+		System.out.println("Size:" + num.length);
+		for (int i = 0; i< num.length ; i++){
+			num[i] = rm.nextInt(999)*(rm.nextBoolean()?-1:1);
+		}
+		return m.sortedArrayToBST(num);
+	}
+	private TreeNode sortedArrayToBST(int[] num) {
+		//sorted array, pick from middle for root.
+		if (num == null || num.length == 0)
+			return null;
+		int rootindex = num.length/2;
+		TreeNode root = new TreeNode(num[rootindex]);
+		root.left = sortedArrayToBST(Arrays.copyOfRange(num, 0, rootindex));
+		root.right = sortedArrayToBST(Arrays.copyOfRange(num, rootindex +1, num.length));
+        return root;
+    }
 
 }
