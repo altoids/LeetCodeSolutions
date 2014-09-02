@@ -3,6 +3,7 @@ import java.util.*;
 /*
  * Convert Sorted List to Binary Search Tree Total Accepted: 17517 Total Submissions: 64305 My Submissions
 Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
+passed oj
  */
 public class ConvertSortedListtoBinarySearchTree {
 	public class ListNode {
