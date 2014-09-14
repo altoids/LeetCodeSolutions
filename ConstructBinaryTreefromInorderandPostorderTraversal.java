@@ -32,6 +32,9 @@ public class ConstructBinaryTreefromInorderandPostorderTraversal {
 		
 		return root;
     }
+	public TreeNode buildTreeO_N(int[] inorder, int[] postorder) {
+		// not yet imlemented. 
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
