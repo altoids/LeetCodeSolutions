@@ -20,7 +20,8 @@ public class ValidateBinarySearchTree {
 	     TreeNode right;
 	     TreeNode(int x) { val = x; }
 	}
-
+//  a better solution might be just do inorder traversal of the tree, and the end result would be a sorted list. check the list is sorted, and no dupe.
+	
 	public boolean isValidBST(TreeNode root) {
 		
 		if (root == null)
@@ -101,7 +102,7 @@ public class ValidateBinarySearchTree {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] source = {"3","1","5","0","2","4","6","#","#","#","3"};
+		String[] source = {"10", "5", "15", "#", "#", "6", "20"};
 		ValidateBinarySearchTree v = new ValidateBinarySearchTree();
 		TreeNode root = v.createTree(source);
 		System.out.println(v.isValidBST(root));
