@@ -25,11 +25,65 @@ public class UniqueBinarySearchTreesII {
 	}
 	
 	public List<TreeNode> generateTrees(int n) {
-		
+		if (n < 1){
+			List<TreeNode> result = new LinkedList<TreeNode>();
+			result.add(null);
+			return result;
+		}
+		return generateTrees(1, n);
     }
+	
+	private List<TreeNode> generateTrees(int s, int e){
+		List<TreeNode> result = new LinkedList<TreeNode>();
+		if (s == e){
+			result.add(new TreeNode(s));
+			return result; // return empty list
+		}
+		
+		for (int i = s; i<=e; i++){
+			List<TreeNode> left = generateTrees(s, i-1);
+			List<TreeNode> right = generateTrees(i+1, e);
+			List<TreeNode> leadingList = null;
+			List<TreeNode> trailingList = null;
+			if (left.size() >= right.size()){
+				leadingList = left;
+				trailingList = right;
+			} else {
+				leadingList = right;
+				trailingList = left;
+			}
+			
+			for (TreeNode leadingNode : leadingList){
+				if (trailingList.size() > 0){	
+					for (TreeNode trailingNode : trailingList) {
+						TreeNode curRoot = new TreeNode(i);
+						if (trailingNode.val > i){
+							curRoot.right = trailingNode;
+							curRoot.left = leadingNode;
+						} else {
+							curRoot.right = leadingNode;
+							curRoot.left = trailingNode;
+						}
+						result.add(curRoot);
+					}
+				} else {
+					TreeNode curRoot = new TreeNode(i);
+					if (leadingNode.val < i)
+						curRoot.left = leadingNode;
+					else
+						curRoot.right = leadingNode;
+					result.add(curRoot);
+				}
+					
+			}
+		}
+		return result;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		UniqueBinarySearchTreesII u = new UniqueBinarySearchTreesII();
+		List<TreeNode> l = u.generateTrees(0);
+		System.out.println(l.size());
 	}
 
 }
